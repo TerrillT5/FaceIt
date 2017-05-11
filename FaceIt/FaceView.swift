@@ -95,8 +95,7 @@ class FaceView: UIView {
        
         let cp1 = CGPoint(x: start.x + mouthRect.width / 5, y: start.y + smileOffset) // starting curve of mouth
         let cp2 = CGPoint(x: end.x - mouthRect.width / 5, y: start.y + smileOffset) // ending curve of mouth
-        
-        
+         
         let path = UIBezierPath()
         path.move(to: start)
         path.addCurve(to: end, controlPoint1: cp1, controlPoint2: cp2)
@@ -123,8 +122,6 @@ class FaceView: UIView {
         static let skullRadiusToMouthWidth: CGFloat = 1
         static let skullRadiusToMouthHeight: CGFloat = 3
         static let skullRadiusToMouthOffSet: CGFloat = 3
-        
-        
         
     }
 
