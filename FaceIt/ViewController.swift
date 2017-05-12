@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    // video ended with 48.35 left 
+    // stopped 5th video with 25.58 left 
     @IBOutlet weak var faceView: FaceView! {
         didSet {
            
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
             faceView.addGestureRecognizer(swipeUpRecognizer) // initiates the swipe up
             let swipeDownRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(decreaseHappiness)) // cause happiness to decrease
             swipeDownRecognizer.direction = .down // swiping down on view makes expression less happy 
-            faceView.addGestureRecognizer(swipeDownRecognizer) // initiates the swipe down 
+            faceView.addGestureRecognizer(swipeDownRecognizer) // initiates the swipe down
             updateUI()
             
         }
