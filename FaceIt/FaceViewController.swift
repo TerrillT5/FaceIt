@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FaceViewController: UIViewController {
 
     // stopped 5th video with 25.58 left 
     @IBOutlet weak var faceView: FaceView! {
