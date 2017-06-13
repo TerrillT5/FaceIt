@@ -8,6 +8,9 @@
 
 import UIKit
 
+// emded 15th video at 24:34
+
+
 @IBDesignable //this shows the view instantly
 
 class FaceView: UIView {
@@ -16,17 +19,33 @@ class FaceView: UIView {
     var scale: CGFloat = 0.9 { didSet { setNeedsDisplay() } } // notifies system that something has changed & needs to be displayed
    
     @IBInspectable
-    var eyesOpen: Bool = true  { didSet { setNeedsDisplay() } }  // makes the eyes circular also
+    var eyesOpen: Bool = true  { didSet {
+        
+        // when the eyes are open & closed
+        leftEye.eyesOpen = eyesOpen
+        rightEye.eyesOpen = eyesOpen
+        
+         } }  // makes the eyes circular also
     
     @IBInspectable
-    var lineWidth: CGFloat = 5.0  { didSet { setNeedsDisplay() } }
+    var lineWidth: CGFloat = 5.0  { didSet {
+        leftEye.lineWidth = lineWidth
+        rightEye.lineWidth = lineWidth
+        setNeedsDisplay()
+        
+        } }
     
     @IBInspectable
     var mouthCurvature: Double = 1.0  { didSet { setNeedsDisplay() } }  // 1.0 is full smile & -1.0 is full frown
     
     @IBInspectable
-    var color: UIColor = .blue  { didSet { setNeedsDisplay() } }
-    
+    var color: UIColor = .blue  { didSet {
+        // add new color to eyes
+        leftEye.color = color
+        rightEye.color = color
+        setNeedsDisplay()
+        
+        } }
     
     private var skullRadius: CGFloat {
         return min(bounds.size.width,bounds.size.height) / 2 * scale // sets the height & width of the skull
@@ -40,34 +59,75 @@ class FaceView: UIView {
         case left
         case right
     }
+    // draw the eye
     
-    private func pathForEye(_ eye: Eye) -> UIBezierPath {
-        
-        // use a func to keep the center of eye in one place
-        func centerOfEye(_ eye: Eye) -> CGPoint {
-            let eyeOffset = skullRadius / Ratios.skullRadiusToEyeOffset
-            var eyeCenter = skullCenter
-            eyeCenter.y -= eyeOffset // place the eyes in a certain coordinate within the skull
-            eyeCenter.x += ((eye == .left) ? -1 : 1) * eyeOffset // sets the eyes in the middle of the skull
-            return eyeCenter // returns center of the eye
-            
-            }
-      
-        let eyeRadius = skullRadius / Ratios.skullRadiusToEyeRadius
-        let eyeCenter = centerOfEye(eye)
-        
-        let path: UIBezierPath
-        if eyesOpen {
-            path = UIBezierPath(arcCenter: eyeCenter, radius: eyeRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true ) // makes the eyes circular
-        } else {
-            path = UIBezierPath()
-            path.move(to: CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
-            path.addLine(to: CGPoint(x: eyeCenter.x + eyeRadius, y: eyeCenter.y))
-        }
-        path.lineWidth = lineWidth // size of the inner eye(pupil)
-        return path
+   private func centerOfEye( eye: Eye) -> CGPoint {
+        let eyeOffset = skullRadius / Ratios.skullRadiusToEyeOffset
+        var eyeCenter = skullCenter
+        eyeCenter.y -= eyeOffset // place the eyes in a certain coordinate within the skull
+        eyeCenter.x += ((eye == .left) ? -1 : 1) * eyeOffset // sets the eyes in the middle of the skull
+        return eyeCenter // returns center of the eye
         
     }
+    
+    private lazy var leftEye: EyeView = self.createEye()
+    private lazy var rightEye: EyeView = self.createEye()
+
+    private func createEye() -> EyeView {
+        let eye = EyeView()
+        eye.isOpaque = false // color of background shows through the eye
+        eye.color = color // eye color is same color of face
+        eye.lineWidth = lineWidth // lineWidth is the same as the face
+        addSubview(eye) // eye added to the view
+
+        return eye
+    }
+    
+    private func positionEye(_eye: EyeView, center: CGPoint) {
+        
+        let size = skullRadius / Ratios.skullRadiusToEyeRadius * 2
+        _eye.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: size, height: size))
+        _eye.center = center //
+        
+        
+    }
+    
+    override func layoutSubviews() { // sent to all views when the bounds change or to be relayed out
+        super.layoutSubviews()
+        
+        positionEye(_eye: leftEye, center: centerOfEye(eye: .left))
+        positionEye(_eye: rightEye, center: centerOfEye(eye: .right))
+
+    }
+    
+    
+//       private func pathForEye(_ eye: Eye) -> UIBezierPath {
+//        
+////         use a func to keep the center of eye in one place
+////    private func centerOfEye(_ eye: Eye) -> CGPoint {
+////            let eyeOffset = skullRadius / Ratios.skullRadiusToEyeOffset
+////            var eyeCenter = skullCenter
+////            eyeCenter.y -= eyeOffset // place the eyes in a certain coordinate within the skull
+////            eyeCenter.x += ((eye == .left) ? -1 : 1) * eyeOffset // sets the eyes in the middle of the skull
+////            return eyeCenter // returns center of the eye
+////            
+////            }
+//      
+//        let eyeRadius = skullRadius / Ratios.skullRadiusToEyeRadius
+//        let eyeCenter = centerOfEye(eye)
+//        
+//        let path: UIBezierPath
+//        if eyesOpen {
+//            path = UIBezierPath(arcCenter: eyeCenter, radius: eyeRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true ) // makes the eyes circular
+//        } else {
+//            path = UIBezierPath()
+//            path.move(to: CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
+//            path.addLine(to: CGPoint(x: eyeCenter.x + eyeRadius, y: eyeCenter.y))
+//        }
+//        path.lineWidth = lineWidth // size of the inner eye(pupil)
+//        return path
+//        
+//    }
     
     private func pathForSkull() -> UIBezierPath{
         let path = UIBezierPath(arcCenter: skullCenter, radius: skullRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false) // makes the skull circular
@@ -109,9 +169,8 @@ class FaceView: UIView {
         
         color.set() // sets the stroke color 
         pathForSkull().stroke() // creates the head
-        pathForEye(.left).stroke() // creates left eye
-        pathForEye(.right).stroke() // creates right eye
-        pathForMouth().stroke()
+//        pathForEye(.left).stroke() // creates left eye
+//        pathForEye(.right).stroke() // creates right eye
         pathForMouth().stroke()
     }
     
@@ -126,7 +185,7 @@ class FaceView: UIView {
             
         }
     }
-    
+     
     private struct Ratios {
         // "static let" is how to make constants
         static let skullRadiusToEyeOffset: CGFloat = 3 // how close the eyes are to each other

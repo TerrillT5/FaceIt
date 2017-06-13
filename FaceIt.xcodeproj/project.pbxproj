@@ -14,6 +14,10 @@
 		D72068791EC4B1A500509336 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72068771EC4B1A500509336 /* LaunchScreen.storyboard */; };
 		D72068831EC4B46A00509336 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72068821EC4B46A00509336 /* FaceView.swift */; };
 		D72068851EC4F87700509336 /* FacialExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72068841EC4F87700509336 /* FacialExpression.swift */; };
+		D7CA67781EDDE74000DE7BC6 /* BlinkingFaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CA67771EDDE74000DE7BC6 /* BlinkingFaceViewController.swift */; };
+		D7CA67801EDDF55900DE7BC6 /* VCLoggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CA677F1EDDF55900DE7BC6 /* VCLoggingViewController.swift */; };
+		D7CA67821EDE0DF000DE7BC6 /* EyeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CA67811EDE0DF000DE7BC6 /* EyeView.swift */; };
+		D7D0C87D1EE8732800B56E9D /* ExpressionEditiorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D0C87C1EE8732800B56E9D /* ExpressionEditiorViewController.swift */; };
 		D7E28F991EC9F213007109F5 /* EmotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E28F981EC9F213007109F5 /* EmotionsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +31,10 @@
 		D720687A1EC4B1A500509336 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D72068821EC4B46A00509336 /* FaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
 		D72068841EC4F87700509336 /* FacialExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacialExpression.swift; sourceTree = "<group>"; };
+		D7CA67771EDDE74000DE7BC6 /* BlinkingFaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlinkingFaceViewController.swift; sourceTree = "<group>"; };
+		D7CA677F1EDDF55900DE7BC6 /* VCLoggingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLoggingViewController.swift; sourceTree = "<group>"; };
+		D7CA67811EDE0DF000DE7BC6 /* EyeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeView.swift; sourceTree = "<group>"; };
+		D7D0C87C1EE8732800B56E9D /* ExpressionEditiorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpressionEditiorViewController.swift; sourceTree = "<group>"; };
 		D7E28F981EC9F213007109F5 /* EmotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,11 +68,15 @@
 		D720686D1EC4B1A500509336 /* FaceIt */ = {
 			isa = PBXGroup;
 			children = (
+				D72068721EC4B1A500509336 /* Main.storyboard */,
+				D7D0C87C1EE8732800B56E9D /* ExpressionEditiorViewController.swift */,
+				D7CA67771EDDE74000DE7BC6 /* BlinkingFaceViewController.swift */,
 				D7E28F981EC9F213007109F5 /* EmotionsViewController.swift */,
 				D72068701EC4B1A500509336 /* FaceViewController.swift */,
 				D72068841EC4F87700509336 /* FacialExpression.swift */,
 				D72068821EC4B46A00509336 /* FaceView.swift */,
-				D72068721EC4B1A500509336 /* Main.storyboard */,
+				D7CA67811EDE0DF000DE7BC6 /* EyeView.swift */,
+				D7CA677F1EDDF55900DE7BC6 /* VCLoggingViewController.swift */,
 				D72068811EC4B3E000509336 /* Supporting Files */,
 			);
 			path = FaceIt;
@@ -108,7 +120,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Terrill Thorne";
 				TargetAttributes = {
 					D720686A1EC4B1A500509336 = {
@@ -156,8 +168,12 @@
 			files = (
 				D72068711EC4B1A500509336 /* FaceViewController.swift in Sources */,
 				D72068851EC4F87700509336 /* FacialExpression.swift in Sources */,
+				D7CA67781EDDE74000DE7BC6 /* BlinkingFaceViewController.swift in Sources */,
 				D7E28F991EC9F213007109F5 /* EmotionsViewController.swift in Sources */,
+				D7CA67801EDDF55900DE7BC6 /* VCLoggingViewController.swift in Sources */,
 				D720686F1EC4B1A500509336 /* AppDelegate.swift in Sources */,
+				D7D0C87D1EE8732800B56E9D /* ExpressionEditiorViewController.swift in Sources */,
+				D7CA67821EDE0DF000DE7BC6 /* EyeView.swift in Sources */,
 				D72068831EC4B46A00509336 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +218,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -252,6 +269,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
